@@ -15,6 +15,20 @@
   --shadow-medium: 0 4px 8px rgba(0, 0, 0, 0.15);
   --transition-normal: all 0.3s ease;
   --border-radius: 8px;
+  
+  /* 响应式断点 */
+  --breakpoint-xs: 0;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+}
+
+/* 全局重置和基础样式 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -24,12 +38,105 @@ body {
   line-height: 1.6;
   margin: 0;
   padding: 0;
+  font-size: 16px;
 }
 
+/* 容器样式 - 移动优先设计 */
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* 响应式容器宽度 */
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+
+  /* 响应式设计 - 移动设备 */
+  @media (max-width: 480px) {
+    .container {
+      padding: 0.75rem;
+    }
+
+    .nav-menu {
+      width: 90%;
+    }
+
+    .card {
+      padding: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .file-preview {
+      height: 160px;
+    }
+
+    .result-image,
+    .preview-image {
+      max-height: 250px;
+    }
+
+    .record-btn {
+      width: 60px;
+      height: 60px;
+      font-size: 1.125rem;
+    }
+
+    .upload-area {
+      padding: 1.25rem;
+      min-height: 200px;
+    }
+
+    /* 超小屏幕标题调整 */
+    h1 {
+      font-size: 1.5rem;
+    }
+
+    h2 {
+      font-size: 1.375rem;
+    }
+
+    h3 {
+      font-size: 1.125rem;
+    }
+
+    /* 超小屏幕按钮调整 */
+    .btn {
+      padding: 0.75rem 1rem;
+      font-size: 0.875rem;
+    }
+
+    /* 确保输入框在超小屏幕上不会溢出 */
+    input[type="text"],
+    input[type="file"],
+    select,
+    textarea {
+      padding: 0.625rem;
+      font-size: 0.875rem;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
 }
 
 /* 导航栏样式 */
@@ -110,7 +217,7 @@ body {
 
 /* 主内容区域 */
 .main-content {
-  padding: 30px 0;
+  padding: 1.5rem 0;
 }
 
 /* 卡片样式 */
@@ -118,9 +225,29 @@ body {
   background-color: var(--card-background);
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-light);
-  padding: 24px;
-  margin-bottom: 24px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
   transition: var(--transition-normal);
+  word-wrap: break-word;
+}
+
+/* 响应式网格布局 */
+.grid {
+  display: grid;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+/* 默认单列布局（移动设备） */
+.grid-cols-1 {
+  grid-template-columns: 1fr;
+}
+
+/* 中等屏幕以上使用双列布局 */
+@media (min-width: 992px) {
+  .grid-cols-1.lg\:grid-cols-2 {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 .card:hover {
@@ -422,65 +549,110 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  max-width: 100%;
 }
 
 .file-preview img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  max-width: 100%;
 }
 
 .audio-file-preview {
   background-color: #f0f4ff;
-  padding: 20px;
+  padding: 1.25rem;
   text-align: center;
+  overflow: hidden;
+  word-wrap: break-word;
 }
 
 .audio-file-icon {
   font-size: 3rem;
   color: var(--primary-color);
-  margin-bottom: 12px;
+  margin-bottom: 0.75rem;
 }
 
 .file-info {
-  padding: 16px;
+  padding: 1rem;
+  overflow: hidden;
 }
 
 .file-name {
   font-weight: 600;
-  margin-bottom: 8px;
+  margin-bottom: 0.5rem;
   color: var(--text-primary);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
   word-break: break-all;
 }
 
 .file-meta {
   font-size: 0.875rem;
   color: var(--text-secondary);
-  margin-bottom: 12px;
+  margin-bottom: 0.75rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .file-card-actions {
   display: flex;
-  gap: 8px;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  overflow: hidden;
 }
 
 .file-card-btn {
   flex: 1;
-  padding: 6px 12px;
+  padding: 0.375rem 0.75rem;
   font-size: 0.875rem;
+  word-wrap: break-word;
+  white-space: normal;
+  min-width: 0;
 }
 
 /* 结果预览 */
 .result-preview {
-  margin-top: 24px;
+  margin-top: 1.5rem;
   text-align: center;
+  overflow: hidden;
+  border-radius: var(--border-radius);
 }
 
-.result-image {
+/* 预览图片样式 - 修复溢出问题 */
+.result-image,
+.preview-image {
   max-width: 100%;
   max-height: 400px;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-light);
+}
+
+/* 图片预览容器 */
+#image-preview,
+.image-preview {
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--border-radius);
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 确保所有图片都不会溢出容器 */
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 /* 录音控制 */
@@ -614,6 +786,72 @@ body {
     width: 60px;
     height: 60px;
   }
+  
+  /* 小屏幕表单元素调整 */
+  form {
+    width: 100%;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
+  /* 小屏幕按钮组调整 */
+  .btn-group {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  /* 小屏幕进度条调整 */
+  .progress-bar-container {
+    width: 100%;
+    margin-bottom: 0.75rem;
+  }
+
+  /* 小屏幕上传区域调整 */
+  .upload-area {
+    padding: 1.5rem;
+  }
+
+  /* 小屏幕结果预览调整 */
+  .result-preview {
+    margin-top: 1.25rem;
+  }
+
+  .result-image,
+  .preview-image {
+    max-height: 300px;
+  }
+
+  /* 小屏幕录音控制调整 */
+  .record-controls {
+    padding: 1.25rem;
+    gap: 1rem;
+  }
+
+  /* 小屏幕推荐模式提示调整 */
+  .recommended-mode {
+    padding: 1rem;
+  }
+
+  /* 小屏幕页脚调整 */
+  .footer {
+    padding: 1rem;
+    text-align: center;
+  }
+
+  /* 小屏幕标题调整 */
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
 }
 
 /* 加载状态 */
@@ -654,6 +892,74 @@ body {
   font-size: 0.875rem;
 }
 
+/* 防止内容溢出的辅助类 */
+/* 文本截断 */
+.text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.text-truncate-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.text-truncate-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 溢出控制 */
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.overflow-auto {
+  overflow: auto;
+}
+
+.overflow-x-hidden {
+  overflow-x: hidden;
+}
+
+.overflow-y-auto {
+  overflow-y: auto;
+}
+
+/* 确保容器有最大宽度限制 */
+.max-w-full {
+  max-width: 100%;
+}
+
+/* 确保所有输入元素适应容器 */
+input, select, textarea {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* 按钮响应式调整 */
+.btn {
+  word-wrap: break-word;
+  white-space: normal;
+  min-width: 0;
+}
+
+/* 文件信息截断 */
+.file-name {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /* 辅助类 */
 .text-center {
   text-align: center;
@@ -691,6 +997,7 @@ body {
 
 .flex { display: flex; }
 .flex-column { flex-direction: column; }
+.flex-wrap { flex-wrap: wrap; }
 .justify-center { justify-content: center; }
 .align-center { align-items: center; }
 .justify-between { justify-content: space-between; }
