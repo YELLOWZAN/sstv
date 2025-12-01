@@ -16,12 +16,14 @@
   --transition-normal: all 0.3s ease;
   --border-radius: 8px;
   
-  /* 响应式断点 */
+  /* 响应式断点 - 包括高分辨率屏幕 */
   --breakpoint-xs: 0;
   --breakpoint-sm: 576px;
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
+  --breakpoint-2xl: 1440px; /* 2K屏幕 */
+  --breakpoint-3xl: 2560px; /* 4K屏幕 */
 }
 
 /* 全局重置和基础样式 */
@@ -55,69 +57,69 @@ body {
   .container {
     max-width: 540px;
   }
+}
 
-  /* 响应式设计 - 移动设备 */
-  @media (max-width: 480px) {
-    .container {
-      padding: 0.75rem;
-    }
+/* 响应式设计 - 移动设备 */
+@media (max-width: 480px) {
+  .container {
+    padding: 0.75rem;
+  }
 
-    .nav-menu {
-      width: 90%;
-    }
+  .nav-menu {
+    width: 90%;
+  }
 
-    .card {
-      padding: 1rem;
-      margin-bottom: 1.25rem;
-    }
+  .card {
+    padding: 1rem;
+    margin-bottom: 1.25rem;
+  }
 
-    .file-preview {
-      height: 160px;
-    }
+  .file-preview {
+    height: 160px;
+  }
 
-    .result-image,
-    .preview-image {
-      max-height: 250px;
-    }
+  .result-image,
+  .preview-image {
+    max-height: 250px;
+  }
 
-    .record-btn {
-      width: 60px;
-      height: 60px;
-      font-size: 1.125rem;
-    }
+  .record-btn {
+    width: 60px;
+    height: 60px;
+    font-size: 1.125rem;
+  }
 
-    .upload-area {
-      padding: 1.25rem;
-      min-height: 200px;
-    }
+  .upload-area {
+    padding: 1.25rem;
+    min-height: 200px;
+  }
 
-    /* 超小屏幕标题调整 */
-    h1 {
-      font-size: 1.5rem;
-    }
+  /* 超小屏幕标题调整 */
+  h1 {
+    font-size: 1.5rem;
+  }
 
-    h2 {
-      font-size: 1.375rem;
-    }
+  h2 {
+    font-size: 1.375rem;
+  }
 
-    h3 {
-      font-size: 1.125rem;
-    }
+  h3 {
+    font-size: 1.125rem;
+  }
 
-    /* 超小屏幕按钮调整 */
-    .btn {
-      padding: 0.75rem 1rem;
-      font-size: 0.875rem;
-    }
+  /* 超小屏幕按钮调整 */
+  .btn {
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+  }
 
-    /* 确保输入框在超小屏幕上不会溢出 */
-    input[type="text"],
-    input[type="file"],
-    select,
-    textarea {
-      padding: 0.625rem;
-      font-size: 0.875rem;
-    }
+  /* 确保输入框在超小屏幕上不会溢出 */
+  input[type="text"],
+  input[type="file"],
+  select,
+  textarea {
+    padding: 0.625rem;
+    font-size: 0.875rem;
   }
 }
 
@@ -136,6 +138,91 @@ body {
 @media (min-width: 1200px) {
   .container {
     max-width: 1140px;
+  }
+}
+
+/* 2K屏幕支持 (1440px+) */
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1320px;
+  }
+  
+  /* 2K屏幕字体大小调整 */
+  body {
+    font-size: 17px;
+  }
+  
+  /* 2K屏幕标题调整 */
+  h1 {
+    font-size: 2.5rem;
+  }
+  
+  h2 {
+    font-size: 2rem;
+  }
+  
+  h3 {
+    font-size: 1.75rem;
+  }
+  
+  /* 2K屏幕卡片和间距调整 */
+  .card {
+    padding: 2rem;
+  }
+  
+  .main-content {
+    padding: 2rem 0;
+  }
+  
+  /* 2K屏幕网格间距调整 */
+  .grid {
+    gap: 2rem;
+  }
+}
+
+/* 4K屏幕支持 (2560px+) */
+@media (min-width: 2560px) {
+  .container {
+    max-width: 2400px;
+  }
+  
+  /* 4K屏幕字体大小调整 */
+  body {
+    font-size: 18px;
+  }
+  
+  /* 4K屏幕标题调整 */
+  h1 {
+    font-size: 3rem;
+  }
+  
+  h2 {
+    font-size: 2.5rem;
+  }
+  
+  h3 {
+    font-size: 2rem;
+  }
+  
+  /* 4K屏幕卡片和间距调整 */
+  .card {
+    padding: 2.5rem;
+  }
+  
+  .main-content {
+    padding: 3rem 0;
+  }
+  
+  /* 4K屏幕网格间距调整 */
+  .grid {
+    gap: 2.5rem;
+  }
+  
+  /* 4K屏幕元素最大宽度控制 */
+  .card-title,
+  .btn,
+  .form-control {
+    max-width: 100%;
   }
 }
 

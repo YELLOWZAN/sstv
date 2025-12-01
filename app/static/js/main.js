@@ -102,11 +102,21 @@ function setupEventListeners() {
   // 录音按钮点击事件
   if (elements.recordButton) elements.recordButton.addEventListener('click', toggleRecording);
   
-  // 文件管理按钮点击事件
-  const fileManageBtn = document.querySelector('.file-manage-btn');
-  if (fileManageBtn) {
-    fileManageBtn.addEventListener('click', () => {
-      window.location.href = '/files';
+  // 文件管理按钮已移除，相关事件监听代码也已删除
+  
+  // 模式切换按钮点击事件（加密/解密）
+  const encryptionModeBtn = document.getElementById('encryption-mode-btn');
+  const decryptionModeBtn = document.getElementById('decryption-mode-btn');
+  
+  if (encryptionModeBtn) {
+    encryptionModeBtn.addEventListener('click', () => {
+      window.location.href = '/switch_mode/encryption';
+    });
+  }
+  
+  if (decryptionModeBtn) {
+    decryptionModeBtn.addEventListener('click', () => {
+      window.location.href = '/switch_mode/decryption';
     });
   }
 }
